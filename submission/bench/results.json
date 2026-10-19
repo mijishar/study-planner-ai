@@ -1,0 +1,372 @@
+{
+ "decider_model": "strands-decider-2b-hobson-v19",
+ "rows": [
+  {
+   "i": 0,
+   "expected": {
+    "tool": "generate_quiz"
+   },
+   "decider": {
+    "tool": {
+     "label": "generate_quiz",
+     "confidence": 0.8956
+    }
+   },
+   "decider_ms": 2487.1130998944864,
+   "decider_server_ms": 1029.1,
+   "llm": {
+    "tool": {
+     "label": "generate_quiz",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 3210.5128000257537,
+   "llm_cost": 0.000772
+  },
+  {
+   "i": 1,
+   "expected": {
+    "tool": "generate_quiz"
+   },
+   "decider": {
+    "tool": {
+     "label": "generate_quiz",
+     "confidence": 0.8253
+    }
+   },
+   "decider_ms": 1732.8975000418723,
+   "decider_server_ms": 1022.8,
+   "llm": {
+    "tool": {
+     "label": "generate_quiz",
+     "confidence": 0.95
+    }
+   },
+   "llm_ms": 2007.9650999978185,
+   "llm_cost": 0.0008088
+  },
+  {
+   "i": 2,
+   "expected": {
+    "tool": "none"
+   },
+   "decider": {
+    "tool": {
+     "label": "none",
+     "confidence": 0.9194
+    }
+   },
+   "decider_ms": 2031.1221000738442,
+   "decider_server_ms": 1021.6,
+   "llm": {
+    "tool": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2023.3309000032023,
+   "llm_cost": 0.0008495999999999999
+  },
+  {
+   "i": 3,
+   "expected": {
+    "tool": "none"
+   },
+   "decider": {
+    "tool": {
+     "label": "none",
+     "confidence": 0.8931
+    }
+   },
+   "decider_ms": 1794.9632999952883,
+   "decider_server_ms": 1017.8,
+   "llm": {
+    "tool": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1869.7112000081688,
+   "llm_cost": 0.0007599999999999999
+  },
+  {
+   "i": 4,
+   "expected": {
+    "tool": "explain_topic"
+   },
+   "decider": {
+    "tool": {
+     "label": "explain_topic",
+     "confidence": 0.7378
+    }
+   },
+   "decider_ms": 1857.4886999558657,
+   "decider_server_ms": 1011.3,
+   "llm": {
+    "tool": {
+     "label": "explain_topic",
+     "confidence": 0.95
+    }
+   },
+   "llm_ms": 1934.5669000176713,
+   "llm_cost": 0.0008320000000000001
+  },
+  {
+   "i": 5,
+   "expected": {
+    "tool": "explain_topic"
+   },
+   "decider": {
+    "tool": {
+     "label": "explain_topic",
+     "confidence": 0.7256
+    }
+   },
+   "decider_ms": 1779.7884000465274,
+   "decider_server_ms": 1023.3,
+   "llm": {
+    "tool": {
+     "label": "explain_topic",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1968.690300011076,
+   "llm_cost": 0.0008335999999999999
+  },
+  {
+   "i": 6,
+   "expected": {
+    "tool": "create_study_plan"
+   },
+   "decider": {
+    "tool": {
+     "label": "create_study_plan",
+     "confidence": 0.9591
+    }
+   },
+   "decider_ms": 1731.978299911134,
+   "decider_server_ms": 1046.3,
+   "llm": {
+    "tool": {
+     "label": "create_study_plan",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2136.376400012523,
+   "llm_cost": 0.0008936
+  },
+  {
+   "i": 7,
+   "expected": {
+    "tool": "create_study_plan"
+   },
+   "decider": {
+    "tool": {
+     "label": "create_study_plan",
+     "confidence": 0.9389
+    }
+   },
+   "decider_ms": 1722.2668000031263,
+   "decider_server_ms": 1034.9,
+   "llm": {
+    "tool": {
+     "label": "create_study_plan",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1897.2088999580592,
+   "llm_cost": 0.0008368000000000002
+  },
+  {
+   "i": 8,
+   "expected": {
+    "tool": "generate_quiz"
+   },
+   "decider": {
+    "tool": {
+     "label": "generate_quiz",
+     "confidence": 0.8307
+    }
+   },
+   "decider_ms": 1785.0865999935195,
+   "decider_server_ms": 1010.2,
+   "llm": {
+    "tool": {
+     "label": "generate_quiz",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2298.0311000719666,
+   "llm_cost": 0.0008552
+  },
+  {
+   "i": 9,
+   "expected": {
+    "tool": "generate_quiz"
+   },
+   "decider": {
+    "tool": {
+     "label": "generate_quiz",
+     "confidence": 0.9031
+    }
+   },
+   "decider_ms": 1717.1232999535277,
+   "decider_server_ms": 1011.5,
+   "llm": {
+    "tool": {
+     "label": "generate_quiz",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2205.5989999789745,
+   "llm_cost": 0.0008408
+  },
+  {
+   "i": 10,
+   "expected": {
+    "tool": "none"
+   },
+   "decider": {
+    "tool": {
+     "label": "none",
+     "confidence": 0.9376
+    }
+   },
+   "decider_ms": 1693.6909999931231,
+   "decider_server_ms": 1006.8,
+   "llm": {
+    "tool": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1949.6073999907821,
+   "llm_cost": 0.0008016
+  },
+  {
+   "i": 11,
+   "expected": {
+    "tool": "none"
+   },
+   "decider": {
+    "tool": {
+     "label": "none",
+     "confidence": 0.9202
+    }
+   },
+   "decider_ms": 1649.3992001051083,
+   "decider_server_ms": 910.5,
+   "llm": {
+    "tool": {
+     "label": "none",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 1941.433500032872,
+   "llm_cost": 0.000784
+  },
+  {
+   "i": 12,
+   "expected": {
+    "tool": "explain_topic"
+   },
+   "decider": {
+    "tool": {
+     "label": "explain_topic",
+     "confidence": 0.7695
+    }
+   },
+   "decider_ms": 1765.4114998877048,
+   "decider_server_ms": 1002.1,
+   "llm": {
+    "tool": {
+     "label": "explain_topic",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2164.2589999828488,
+   "llm_cost": 0.000876
+  },
+  {
+   "i": 13,
+   "expected": {
+    "tool": "create_study_plan"
+   },
+   "decider": {
+    "tool": {
+     "label": "create_study_plan",
+     "confidence": 0.952
+    }
+   },
+   "decider_ms": 1689.8244000039995,
+   "decider_server_ms": 983.5,
+   "llm": {
+    "tool": {
+     "label": "create_study_plan",
+     "confidence": 1.0
+    }
+   },
+   "llm_ms": 2863.630999927409,
+   "llm_cost": 0.000876
+  },
+  {
+   "i": 14,
+   "expected": {
+    "tool": "generate_quiz"
+   },
+   "decider": {
+    "tool": {
+     "label": "generate_quiz",
+     "confidence": 0.9406
+    }
+   },
+   "decider_ms": 1775.8402000181377,
+   "decider_server_ms": 1022.1,
+   "llm": {
+    "tool": {
+     "label": "generate_quiz",
+     "confidence": 0.95
+    }
+   },
+   "llm_ms": 2360.079500009306,
+   "llm_cost": 0.0008064
+  }
+ ],
+ "summary": {
+  "decider": {
+   "accuracy": 1.0,
+   "decisions": 15,
+   "per_question": {
+    "tool": 1.0
+   },
+   "latency_p50_ms": 1765.4,
+   "latency_p95_ms": 2031.1,
+   "usd_per_1k_decisions": 0.035,
+   "confident_share": 1.0,
+   "accuracy_when_confident": 1.0,
+   "sent_to_human_at_threshold": 0
+  },
+  "llm": {
+   "accuracy": 1.0,
+   "decisions": 15,
+   "per_question": {
+    "tool": 1.0
+   },
+   "latency_p50_ms": 2023.3,
+   "latency_p95_ms": 2863.6,
+   "usd_per_1k_decisions": 0.8284,
+   "confident_share": 1.0,
+   "accuracy_when_confident": 1.0,
+   "sent_to_human_at_threshold": 0
+  },
+  "speedup_p50": 1.15
+ },
+ "threshold": 0.7,
+ "llm_model": "us.amazon.nova-pro-v1:0",
+ "llm_provider": "bedrock",
+ "llm_where": "Amazon Bedrock (us.amazon.nova-pro-v1:0)",
+ "decider_url": "https://da25tnxy06gjk.cloudfront.net",
+ "decider_mode": "ugmdu",
+ "ran_at": 1792217079.9886281,
+ "split": "test"
+}

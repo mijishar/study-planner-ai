@@ -1,0 +1,20 @@
+{"state": "User request: What is recursion and how does it work?", "expected": {"tool": "explain_topic"}, "split": "tune"}
+{"state": "User request: Can you explain machine learning to me as a beginner?", "expected": {"tool": "explain_topic"}, "split": "tune"}
+{"state": "User request: Help me understand what an API is", "expected": {"tool": "explain_topic"}, "split": "tune"}
+{"state": "User request: Create a 7-day study plan for Python programming", "expected": {"tool": "create_study_plan"}, "split": "tune"}
+{"state": "User request: I have 2 weeks to prepare for my calculus exam, make me a schedule", "expected": {"tool": "create_study_plan"}, "split": "tune"}
+{"state": "User request: Give me 5 quiz questions on sorting algorithms", "expected": {"tool": "generate_quiz"}, "split": "test"}
+{"state": "User request: Test my knowledge of object-oriented programming with some questions", "expected": {"tool": "generate_quiz"}, "split": "test"}
+{"state": "User request: What time is it right now?", "expected": {"tool": "none"}, "split": "test"}
+{"state": "User request: What is the capital of France?", "expected": {"tool": "none"}, "split": "test"}
+{"state": "User request: Explain the concept of Big-O notation", "expected": {"tool": "explain_topic"}, "split": "test"}
+{"state": "User request: What does polymorphism mean in programming?", "expected": {"tool": "explain_topic"}, "split": "test"}
+{"state": "User request: I need a study plan to learn databases in 10 days", "expected": {"tool": "create_study_plan"}, "split": "test"}
+{"state": "User request: Build me a schedule to study for my biology exam over 5 days", "expected": {"tool": "create_study_plan"}, "split": "test"}
+{"state": "User request: Quiz me on Python basics", "expected": {"tool": "generate_quiz"}, "split": "test"}
+{"state": "User request: Generate 3 practice questions about recursion", "expected": {"tool": "generate_quiz"}, "split": "test"}
+{"state": "User request: Can you order me a pizza?", "expected": {"tool": "none"}, "split": "test"}
+{"state": "User request: Tell me a joke", "expected": {"tool": "none"}, "split": "test"}
+{"state": "User request: Explain what a binary search tree is", "expected": {"tool": "explain_topic"}, "split": "test"}
+{"state": "User request: Plan my next 30 days of studying machine learning", "expected": {"tool": "create_study_plan"}, "split": "test"}
+{"state": "User request: I want to practice some questions on probability", "expected": {"tool": "generate_quiz"}, "split": "test"}

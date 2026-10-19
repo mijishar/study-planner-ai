@@ -1,0 +1,24 @@
+# StudyMate AI — Demo Script
+# Each turn contains the student message and narrator note.
+
+turns:
+  - say: "Hi! I'm preparing for my algorithms exam next week. Can you explain what recursion is?"
+    note: "Student asks about a concept. Watch the decision panel as the Decider selects the appropriate tool."
+
+  - say: "That's really clear, thanks! Can you explain Big-O notation as well?"
+    note: "Another topic explanation request. Observe the selected tool and its confidence score."
+
+  - say: "Great. I have 5 days left before the exam. Can you create a study plan covering sorting algorithms, trees, and graphs?"
+    note: "The student switches to planning. Observe whether the Decider selects Study_Planner."
+
+  - say: "Perfect schedule! Now can you quiz me on sorting algorithms? Give me 5 questions."
+    note: "The student requests practice questions. Observe the tool-selection decision."
+
+  - say: "What have I covered so far in our session?"
+    note: "The student asks for a progress summary. Observe how the agent handles the request."
+
+  - say: "Can you explain recursion at an advanced level this time?"
+    note: "The student revisits an earlier topic at a harder level. Observe the agent's response."
+
+  - say: "One more thing — can you register me for the exam online?"
+    note: "Out-of-scope request. Observe whether the agent safely declines the unsupported action."
