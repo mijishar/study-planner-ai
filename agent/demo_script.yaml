@@ -1,24 +1,29 @@
-# StudyMate AI — Demo Script
+# StudyMate AI — Demo Script (updated for upgraded frontend)
 # Each turn contains the student message and narrator note.
+# The recorder navigates to the AI Tutor page automatically before sending messages.
+
+title: "StudyMate AI — AI-powered study assistant"
+intro: "Welcome to StudyMate AI, an AI-powered study assistant built with Amazon Bedrock and Strands Decider 2B for intelligent tool routing."
+outro: "StudyMate AI demonstrates real Strands Decider 2B tool selection, Amazon Bedrock language generation, and a complete study workflow — all in a single premium web application."
 
 turns:
   - say: "Hi! I'm preparing for my algorithms exam next week. Can you explain what recursion is?"
-    note: "Student asks about a concept. Watch the decision panel as the Decider selects the appropriate tool."
+    note: "Student greets and asks for a concept explanation. Strands Decider 2B routes this to the Topic Explainer tool."
 
   - say: "That's really clear, thanks! Can you explain Big-O notation as well?"
-    note: "Another topic explanation request. Observe the selected tool and its confidence score."
+    note: "A follow-up topic explanation. The Decider selects the same tool with high confidence."
 
-  - say: "Great. I have 5 days left before the exam. Can you create a study plan covering sorting algorithms, trees, and graphs?"
-    note: "The student switches to planning. Observe whether the Decider selects Study_Planner."
+  - say: "I have 5 days left before the exam. Can you create a study plan covering sorting algorithms, trees, and graphs?"
+    note: "The student switches to planning. Strands Decider 2B selects the Study Planner tool and returns a day-by-day schedule."
 
-  - say: "Perfect schedule! Now can you quiz me on sorting algorithms? Give me 5 questions."
-    note: "The student requests practice questions. Observe the tool-selection decision."
+  - say: "Perfect! Now can you quiz me on sorting algorithms? Give me 5 questions."
+    note: "The student requests practice questions. The Decider selects the Quiz Generator tool."
 
   - say: "What have I covered so far in our session?"
-    note: "The student asks for a progress summary. Observe how the agent handles the request."
+    note: "The student asks for a session summary. The agent uses its Progress Context to summarise topics, plans, and quizzes from this session."
 
   - say: "Can you explain recursion at an advanced level this time?"
-    note: "The student revisits an earlier topic at a harder level. Observe the agent's response."
+    note: "The student revisits an earlier topic at a higher difficulty. The agent adapts the explanation to advanced level."
 
-  - say: "One more thing — can you register me for the exam online?"
-    note: "Out-of-scope request. Observe whether the agent safely declines the unsupported action."
+  - say: "Can you register me for the exam online?"
+    note: "Out-of-scope request. The ScopeGuardrail safely declines without invoking any tool."

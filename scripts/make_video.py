@@ -166,6 +166,11 @@ def ensure_demo(port: int, target: str, eager: bool = False) -> subprocess.Popen
 def record(script: dict, port: int, workdir: Path) -> tuple[Path, list[dict]]:
     from playwright.sync_api import sync_playwright
 
+    # Selectors for the upgraded StudyMate AI frontend
+    MSG_INPUT   = "#tutor-m"
+    IMG_INPUT   = "#tutor-img"
+    TUTOR_NAV   = '[data-page="tutor"]'   # sidebar nav button for AI Tutor
+
     marks = []
     with sync_playwright() as p:
         b = p.chromium.launch()
@@ -174,19 +179,44 @@ def record(script: dict, port: int, workdir: Path) -> tuple[Path, list[dict]]:
         t0 = time.time()
         pg.goto(f"http://127.0.0.1:{port}/")
         pg.wait_for_timeout(1500)
+
+        # Navigate to AI Tutor so the chat input is visible
+        nav_btn = pg.query_selector(TUTOR_NAV)
+        if nav_btn:
+            nav_btn.click()
+            pg.wait_for_timeout(800)
+
+        # Verify the chat input exists before trying to use it
+        if not pg.query_selector(MSG_INPUT):
+            page_html = pg.content()[:2000]
+            raise RuntimeError(
+                f"[video] Chat input '{MSG_INPUT}' not found on the page. "
+                f"The recorder opened: {pg.url}\n"
+                f"Page snippet:\n{page_html}\n\n"
+                "Check that the demo server is running the upgraded StudyMate AI frontend "
+                "and that the AI Tutor page is accessible."
+            )
+
+        turn_count = 0
         for i, turn in enumerate(script["turns"]):
             start = time.time() - t0
             imgs = turn.get("image") or turn.get("images") or []
             if imgs:  # attach the photo(s) with the paperclip, as a user would
-                pg.set_input_files("#img", [str(ROOT / x) for x in ([imgs] if isinstance(imgs, str) else imgs)])
+                pg.set_input_files(IMG_INPUT, [str(ROOT / x) for x in ([imgs] if isinstance(imgs, str) else imgs)])
                 pg.wait_for_timeout(900)
             with pg.expect_response(lambda r: "/api/chat" in r.url, timeout=180_000) as resp:
-                pg.fill("#m", "")
-                pg.type("#m", turn["say"], delay=28)
-                pg.press("#m", "Enter")
+                pg.fill(MSG_INPUT, "")
+                pg.type(MSG_INPUT, turn["say"], delay=28)
+                pg.keyboard.press("Enter")
             out = resp.value.json()
-            pg.wait_for_function(f"document.body.dataset.turns >= {i + 1}", timeout=30_000)
+            # Wait for the bot response to appear (wait for the typing indicator to disappear
+            # or for a new .msg.bot element to appear)
+            try:
+                pg.wait_for_selector(".msg.bot", timeout=30_000)
+            except Exception:  # noqa: BLE001
+                pass
             pg.wait_for_timeout(1800)
+            turn_count += 1
             marks.append({"start": start, "end": time.time() - t0, "out": out, **turn})
         pg.wait_for_timeout(800)
         video = pg.video.path()
