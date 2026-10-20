@@ -75,10 +75,13 @@ class TestFocusTimer:
 @pytest.mark.skipif(not HTML_PATH.exists(), reason="index.html not found")
 class TestTopBar:
     def test_topbar_exists(self):                assert 'id="topbar"' in BODY
-    def test_topbar_search_exists(self):         assert 'id="topbar-search"' in BODY
+    def test_topbar_search_absent(self):
+        """Search bar was intentionally removed; topbar now shows only branding + settings."""
+        assert 'id="topbar-search"' not in BODY
     def test_topbar_avatar_exists(self):         assert 'id="topbar-avatar-display"' in BODY
     def test_topbar_routes_to_tutor(self):       assert "nav('tutor')" in HTML or 'nav("tutor")' in HTML
     def test_topbar_css_present(self):           assert "#topbar" in HTML
+    def test_topbar_has_settings_btn(self):      assert "nav('settings')" in BODY or 'nav("settings")' in BODY
 
 
 @pytest.mark.skipif(not HTML_PATH.exists(), reason="index.html not found")
