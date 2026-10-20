@@ -45,7 +45,11 @@ def ffmpeg() -> str:
 
 
 def run(cmd: list[str]) -> None:
-    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+    r = subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
+    if r.returncode != 0:
+        print(f"[video] FFmpeg failed (exit {r.returncode}):")
+        print(r.stderr.decode("utf-8", errors="replace")[-4000:])
+        r.check_returncode()  # raises CalledProcessError with context
 
 
 def duration(path: Path) -> float:
@@ -128,15 +132,52 @@ def still_clip(image: Path, audio: Path, out: Path, pad: float = 0.8) -> Path:
 
 def segment_clip(rec: Path, start: float, end: float, audio: Path, out: Path) -> Path:
     """The recording between start and end, fitted to the narration: frozen at the end if the
-    narration is longer, sped up (up to 2.5x) if the recording is longer."""
-    seg = max(0.5, end - start)
+    narration is longer, sped up (up to 2.5x) if the recording is longer.
+
+    Robustness fixes vs. the original:
+    - Clamp end to the actual recorded video duration (avoids trim past EOF).
+    - Ensure seg > 0 (avoids division-by-zero and zero-duration segments).
+    - Clamp tpad to >= 0.01 (FFmpeg rejects tpad:stop_duration=0.00).
+    - Use -ss / -t on the input instead of trim= to avoid WebM seek issues.
+    - Pass -vsync vfr to avoid timestamp discontinuities from the WebM container.
+    """
+    rec_dur = duration(rec)
+    # Clamp end to actual video duration — avoid trimming past EOF
+    safe_end = min(end, rec_dur) if rec_dur > 0 else end
+    safe_start = min(start, safe_end - 0.1)  # ensure at least 0.1s segment
+    seg = max(0.1, safe_end - safe_start)
+
     speech = duration(audio) + 0.6
     speed = min(2.5, seg / speech) if seg > speech else 1.0
+    # Avoid division by zero from extreme speed values
+    speed = max(speed, 0.1)
     vlen = seg / speed
-    pad = max(0.0, speech - vlen)
-    vf = f"trim=start={start:.2f}:end={end:.2f},setpts=(PTS-STARTPTS)/{speed:.3f},scale={W}:{H},tpad=stop_mode=clone:stop_duration={pad:.2f},format=yuv420p"
-    run([ffmpeg(), "-y", "-i", str(rec), "-i", str(audio), "-filter_complex", f"[0:v]{vf}[v];[1:a]apad[a]", "-map", "[v]", "-map", "[a]",
-         "-t", f"{max(vlen, speech):.2f}", "-c:v", "libx264", "-preset", "veryfast", "-r", "30", "-c:a", "aac", "-ar", "44100", "-ac", "2", str(out)])
+    # tpad must be > 0 — FFmpeg rejects stop_duration=0.00
+    pad = max(0.02, speech - vlen)
+
+    # Use input-level seek (-ss / -t) instead of trim= filter to avoid WebM timestamp issues
+    # This is more reliable for WebM containers on Windows
+    seg_duration = f"{seg:.2f}"
+    vf = (
+        f"setpts=(PTS-STARTPTS)/{speed:.3f},"
+        f"scale={W}:{H},"
+        f"tpad=stop_mode=clone:stop_duration={pad:.2f},"
+        f"format=yuv420p"
+    )
+    total_dur = max(vlen, speech)
+    run([
+        ffmpeg(), "-y",
+        "-ss", f"{safe_start:.3f}", "-t", seg_duration,
+        "-i", str(rec),
+        "-i", str(audio),
+        "-filter_complex", f"[0:v]{vf}[v];[1:a]apad[a]",
+        "-map", "[v]", "-map", "[a]",
+        "-t", f"{total_dur:.2f}",
+        "-c:v", "libx264", "-preset", "veryfast", "-r", "30",
+        "-c:a", "aac", "-ar", "44100", "-ac", "2",
+        "-vsync", "vfr",
+        str(out),
+    ])
     return out
 
 
