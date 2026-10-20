@@ -3,8 +3,8 @@
 # The recorder navigates to the AI Tutor page automatically before sending messages.
 
 title: "StudyMate AI — AI-powered study assistant"
-intro: "Welcome to StudyMate AI, an AI-powered study assistant built with Amazon Bedrock and Strands Decider 2B for intelligent tool routing."
-outro: "StudyMate AI demonstrates real Strands Decider 2B tool selection, Amazon Bedrock language generation, and a complete study workflow — all in a single premium web application."
+intro: "Welcome to StudyMate AI, an AI-powered study assistant built with Amazon Bedrock and Strands Decider for intelligent tool routing."
+outro: "StudyMate AI demonstrates real Strands Decider tool selection, Amazon Bedrock language generation, and a complete study workflow — all in a single premium web application."
 
 turns:
   - say: "Hi! I'm preparing for my algorithms exam next week. Can you explain what recursion is?"
