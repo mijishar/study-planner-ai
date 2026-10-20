@@ -6,6 +6,36 @@
 <title>StudyMate AI</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+/* ═══════════════════════════════════════════════════
+   LAYOUT RESET — prevents white gap above the app
+═══════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #080B14 !important;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #080B14;
+  color: var(--ink, #e8edf8);
+  font: 15px/1.5 Inter, system-ui, sans-serif;
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* The [data-theme="bright"] background override */
+[data-theme="bright"] html,
+[data-theme="bright"] body {
+  background: #f0f4f8 !important;
+}
+
 /* ── Design tokens ─────────────────────────────────────────────────────── */
 :root {
   --bg:       #080B14;
